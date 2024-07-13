@@ -25,7 +25,7 @@ To use a blueprint from this repository:
 5. Paste the URL of the desired blueprint YAML file from this repository.
 
 For example:
-https://github.com/thomasegon/ha-blueprints/blob/main/lighting_control.yaml
+https://raw.githubusercontent.com/thomaskaergaard/ha-blueprints/main/lighting_control.yaml
 
 
 ## Blueprints
