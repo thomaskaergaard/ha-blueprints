@@ -6,78 +6,36 @@ blueprint:
     Dim it up/down (depending on it's current state) by holding the same button.
   domain: automation
   input:
-    button:
-      name: Push button
-      description:
-        Entity representing a physical push button (which restores its position
-        when released). It must emit a square signal on press.
-      selector:
-        entity:
-          domain: binary_sensor
-          multiple: true
-    light:
-      name: Light
-      selector:
-        entity:
-          domain: light
-    hold_threshold:
-      name: Hold threshold
-      description: Time to consider button is being held, instead of just pushed.
-      default: 0.8
-      selector:
-        number:
-          min: 0.05
-          max: 10
-          step: 0.05
-          unit_of_measurement: s
-    brightness_threshold:
-      name: Brightness threshold
-      description: If the light brightness is above this value,
-        the light is going to dim down when holding the button.
-      default: 130
-      selector:
-        number:
-          min: 0
-          max: 255
-    brightness_step_pct:
-      name: Brightness step
-      description: Percentage brightness increase/decrease in each step.
-      default: 20
-      selector:
-        number:
-          min: 1
-          max: 100
-          unit_of_measurement: "%"
-    transition_step_length:
-      name: Transition lenght
-      description: >-
-        Lenght of brightness transition in each step.
-        WARNING: may not be supported by all lights.
-      default: 0
-      selector:
-        number:
-          min: 0
-          max: 5
-          step: 0.01
-          unit_of_measurement: s
-    delay_step_length:
-      name: Delay length
-      description: >-
-        Length of pause after each step.
-        MUST be larger than Transition length.
-      default: 0.2
-      selector:
-        number:
-          min: 0.1
-          max: 5
-          step: 0.01
-          unit_of_measurement: s
+    triggers:
+      name: "Triggers *"
+      icon: mdi:cog-outline
+      collapsed: true
+      input:
+        trigger:
+          name: Trigger Sensor - Binary Sensors - Schedule *
+          description: The trigger sensors are responsible for turning the lights, switches, scenes, and scripts ON and OFF. You can choose any [binary sensors](https://www.home-assistant.io/integrations/binary_sensor/) you prefer as triggers.
+            Alternatively, if you prefer a time-based trigger, you can also add a [schedule helper](https://community.home-assistant.io/t/481048/1616).
+            
+            
+            When using multiple trigger sensors, it's advisable to group them together using a group helper.
+            This ensures smoother automation execution and prevents conflicts.
+            
+            
+            For more information on grouping your trigger sensors [Click Here](https://community.home-assistant.io/t/481048/34)
+          default: []
+          selector:
+            entity:
+              filter:
+                domain:
+                  - binary_sensor
+                  - schedule
+              multiple: true
 
 mode: single
 
 trigger:
   - platform: state
-    entity_id: !input button
+    entity_id: !input trigger
     to: "on"
 
 action:
