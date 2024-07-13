@@ -15,13 +15,6 @@ blueprint:
           name: Trigger Sensor - Binary Sensors - Schedule *
           description: The trigger sensors are responsible for turning the lights, switches, scenes, and scripts ON and OFF. You can choose any [binary sensors](https://www.home-assistant.io/integrations/binary_sensor/) you prefer as triggers.
             Alternatively, if you prefer a time-based trigger, you can also add a [schedule helper](https://community.home-assistant.io/t/481048/1616).
-            
-            
-            When using multiple trigger sensors, it's advisable to group them together using a group helper.
-            This ensures smoother automation execution and prevents conflicts.
-            
-            
-            For more information on grouping your trigger sensors [Click Here](https://community.home-assistant.io/t/481048/34)
           default: []
           selector:
             entity:
@@ -30,6 +23,15 @@ blueprint:
                   - binary_sensor
                   - schedule
               multiple: true
+        boolean_dimmer:
+          name: Dimmer
+          description: Is the trigger ...
+          default: []
+          selector:
+            entity:
+              filter:
+                domain:
+                  - input_boolean
 
 mode: single
 
